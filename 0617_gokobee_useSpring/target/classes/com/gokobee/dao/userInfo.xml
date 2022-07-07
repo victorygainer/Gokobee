@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gokobee.dao.MybatisDAO">
+<!-- 
+	실행할 sql 명령이 저장된 xml 파일의 namespace에는 반드시 풀패키지 이름과 함께 적어야 한다.
+ -->
+
+	<!-- 메인글을 저장한다. -->
+	<insert id="userRegister" parameterType="vo">
+		insert into userInfo (userID, userPassword) values (#{userID}, #{userPassword})
+	</insert>
+	
+	<select id="login" parameterType="vo" resultType="vo">
+ 		select
+     		userID, userPassword, regiDate, verify
+		 from
+    	 	userInfo
+		 where userID = #{userID}
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<typeAliases>
+		<typeAlias type="com.gokobee.vo.UserInfoVO" alias="vo"/>
+		<typeAlias type="com.gokobee.vo.CategoryVO" alias="cao"/>
+		<typeAlias type="com.gokobee.vo.ContentVO" alias="co"/>
+		<typeAlias type="com.gokobee.vo.UserCommentVO" alias="cmo"/>
+		<typeAlias type="com.gokobee.vo.WishListVO" alias="wlvo"/>
+		<typeAlias type="com.gokobee.vo.WishListListVO" alias="wllvo"/>
+		<typeAlias type="com.gokobee.vo.ReservationVO" alias="ro"/>
+	</typeAliases>
+
+</configuration>
+
+
+
+
+
+
+
+
+
+
+
+
+

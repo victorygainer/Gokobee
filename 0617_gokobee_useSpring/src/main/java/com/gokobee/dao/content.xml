@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gokobee.dao.MybatisDAO">
+<!-- 
+	실행할 sql 명령이 저장된 xml 파일의 namespace에는 반드시 풀패키지 이름과 함께 적어야 한다.
+ -->
+
+
+<!-- 
+	create table content (
+    contentNum       number          not null,
+    cityCode         varchar2(20)    not null,
+    cateCode         varchar2(30)    not null,
+    contentTag       varchar2(50)    not null,
+    contentName      varchar2(50)    not null,
+    contentOwner			 varchar2(50)	 not null,
+    contentPrice     number          not null,
+    contentSum       varchar(200)    null,
+    contentDes       varchar(500)    null,
+    contentImg       varchar(200)    null,
+    contentDate      date            default sysdate,
+    contentThumbImg  varchar(200)    null,
+    primary key(contentNum)   
+);
+
+ -->
+
+
+	<!-- 카테고리 호출 -->
+<select id="category" resultType="cao">
+ select
+  level, cateName, cateCode, cateCodeRef
+ from contentCategory
+     start with cateCodeRef is null connect by prior cateCode = cateCodeRef
+</select>
+
+<insert id="contentRegister" parameterType="co">
+ insert into content 
+ (contentNum, cityCode, cateCode, contentTag, contentName, contentOwner, contentPrice, contentSum, contentDes, contentImg, contentThumbImg)
+  values (content_idx_seq.nextval, #{cityCode}, #{cateCode}, #{contentTag}, #{contentName},
+  #{contentOwner}, #{contentPrice}, #{contentSum}, #{contentDes}, #{contentImg}, #{contentThumbImg})
+</insert>
+
+
+<select id="myContentList" parameterType="String" resultType="co">
+ 	select * from content where contentOwner = #{contentOwner} order by contentNum desc
+</select>
+
+<select id="myContentView" parameterType="int" resultType="co">
+ select contentNum, cityCode, cateCode, contentTag, contentName, contentOwner,
+ 		contentPrice, contentSum, contentDes, contentImg, contentDate, contentImg, contentThumbImg
+     from content
+         where contentNum = #{contentNum}
+</select>
+
+<update id="contentUpdate">
+ update content
+     set
+         cityCode = #{cityCode},
+         cateCode = #{cateCode},
+         contentTag = #{contentTag},
+         contentName = #{contentName},
+         contentPrice = #{contentPrice},
+         contentSum = #{contentSum},
+         contentDes = #{contentDes},
+         contentImg = #{contentImg},
+         contentThumbImg = #{contentThumbImg}
+     where contentNum = ${contentNum}
+</update>
+
+<delete id="contentDelete">
+ delete
+     content
+ where contentNum = #{contentNum}
+</delete>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean id="userInfoVO" class="com.gokobee.vo.UserInfoVO"/>
+<bean id="contentVO" class="com.gokobee.vo.ContentVO"/>
+<bean id="categoryVO" class="com.gokobee.vo.CategoryVO"/>
+<bean id="userCommentVO" class="com.gokobee.vo.UserCommentVO"/>
+<bean id="WishListVO" class="com.gokobee.vo.WishListVO"/>
+<bean id="WishListListVO" class="com.gokobee.vo.WishListListVO"/>
+<bean id="ReservationVO" class="com.gokobee.vo.ReservationVO"/>
+
+</beans>

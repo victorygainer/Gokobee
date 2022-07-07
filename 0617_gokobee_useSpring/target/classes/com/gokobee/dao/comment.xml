@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gokobee.dao.MybatisDAO">
+<!-- 
+	실행할 sql 명령이 저장된 xml 파일의 namespace에는 반드시 풀패키지 이름과 함께 적어야 한다.
+ -->
+
+
+<!-- 
+	create table userComment (
+    contentNum      number          not null,
+    userID     varchar2(50)    		not null,
+    commentNum      number          not null,
+    commentDes      varchar2(2000)  not null,
+    commentDate     date            default sysdate,
+    primary key(contentNum, commentNum) 
+);
+ -->
+
+
+<insert id="insertComment" parameterType="cmo">
+ 	insert into userComment  (contentNum, userID, commentNum, commentDes)	 
+    values (#{contentNum}, #{userID}, comment_idx_seq.nextval, #{commentDes})
+    <selectKey resultType="int" keyProperty="contentNum" order="AFTER">
+		select count(*) from content where contentNum = #{contentNum}
+	</selectKey>
+</insert>
+
+<select id="selectCommentList" parameterType="int" resultType="cmo">
+	select * from userComment where contentNum = #{contentNum} order by commentNum desc
+</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
