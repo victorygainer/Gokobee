@@ -1,5 +1,5 @@
 function ReservationOK() {
-	console.log('reservationOK()');
+	//console.log('reservationOK()');
 	let contentNum = document.getElementById('contentNum').value;
 	let userID = document.getElementById('userID').value;
 	let contentOwner = document.getElementById('contentOwner').value;
@@ -20,7 +20,7 @@ function ReservationOK() {
 	};
 	$.ajax({
 		url : contextPath + "/shop/view/reservationOK",
-		type : "post",
+		type : "POST",
 		data : data,
 		success : function() {
 			alert("예약이 완료 되었습니다.");

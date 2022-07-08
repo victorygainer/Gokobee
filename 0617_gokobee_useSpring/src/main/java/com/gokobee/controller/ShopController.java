@@ -97,7 +97,7 @@ public class ShopController {
 		System.out.println("지울 위시리스트: " + chArr);
 		String userID = wishListVO.getUserID();
 		int contentNum = 0;
-		System.out.println(contentNum);
+		//System.out.println(contentNum);
 		//mapper.addWishList(wishListVO);
 		if (userID != null) {
 			for (String i: chArr) {
@@ -112,7 +112,7 @@ public class ShopController {
 	public void reservationOK(HttpSession session, HttpServletRequest request,
 			ReservationVO reservationVO) {
 		System.out.println("ShopController의 reservationOK() 메소드");
-		System.out.println("reservationVO: " + reservationVO);
+		//System.out.println("reservationVO: " + reservationVO);
 		MybatisDAO mapper = sqlSession.getMapper(MybatisDAO.class);	
 		mapper.reservationOK(reservationVO);
 		}

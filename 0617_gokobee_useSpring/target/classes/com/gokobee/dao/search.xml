@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gokobee.dao.MybatisDAO">
+
+<select id="contentSearch" parameterType="String" resultType="co">
+select * from content where contentDes like '%'||#{contentName}||'%'
+<!-- (cityCode  like '%'||#{contentName}||'%')
+OR (cateCode  like '%'||#{contentName}||'%') 
+OR (contentTag like '%'||#{contentName}||'%')
+OR 
+OR (contentSum  like '%'||#{contentName}||'%')
+OR (contentDes  like '%'||#{contentName}||'%') -->
+</select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

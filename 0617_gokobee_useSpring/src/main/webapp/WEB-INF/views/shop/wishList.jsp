@@ -14,111 +14,113 @@
 			integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
 			crossorigin="anonymous"></script>
 	<style type="text/css">
-		html, body {
-		    margin: 0;
-		    padding: 0;
-		    height: 100%;
-		}
-		nav{
-			margin-bottom: 50px;
-		}btn btn-outline-dark
-		#wrap{
-		    position: relative;
-		    padding-bottom: 50px;
-		    margin:auto;
-		    text-align:center;
-		}
-		a{
-			text-decoration: none;
-			color: black;
-		}
-		a:hover{
-			font-weight: 900;
-		}
-		footer{
-			position: relative;
-			bottom: 0;
-		}
-		.text {
-		
-		    display: flex;
-		    justify-content: center;
-		    align-items: center;
-		    height: 100%;
-		    font-family: 'Roboto', Arial, sans-serif;
-		    font-size: 40px;
-		    font-weight: bold;
-		    line-height: 1.2;
-		    letter-spacing: 0.05em;
-		    white-space: nowrap;
-		    text-transform: uppercase;
-		    color: #fff;
-		    background-color: #000;
-		    mix-blend-mode: multiply;
-		    opacity: 0;
-		    animation: fadeInText 3s 2s ease-out forwards;
-		
-		}
-		@keyframes scaleImage {
-		    100% {
-		        transform: scale(1);
-		    }
-		}
-		@keyframes fadeInText {
-		    100% {
-		        opacity: 1;
-		    }
-		}
-		
-	 section#content ul li { display:inline-block; margin:10px; }
-	 section#content div.contentThumb img { width:200px; height:200px; }
-	 section#content div.contentName { padding:10px 0; text-align:center; }
-	 section#content div.contentName a { color:#000; }
+.container {
+	width: 500px;
+}
 
-    </style>
-	<title>MY TRIP</title>
+.content {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 10px;
+	margin: 10px;
+}
 
+.content a {
+	width: 290px;
+	height: 350px;
+	text-decoration: none;
+	color: black;
+	font-size: 13px;
+	margin: 0px;
+	padding: 0px;
+	z-index: 1;
+}
+
+.content img {
+	height: 200px;
+	display: block;
+	margin: 0px;
+}
+
+.content p {
+	margin: 0px;
+}
+
+.card-body {
+	cell-padding: 0px;
+	margin: 0px;
+}
+
+.chBox {
+	position: relative;
+	z-index: 3;
+	text-align:center;
+	top: 5px;
+	left: 58px;
+	zoom: 2.0;
+
+}
+
+.card{
+	position: relative;
+	width: 290px;
+	height: 350px;
+}
+
+.card-img-top {
+	position: relative; 
+	z-index: 2;
+	top: -27px;
+}
+
+.card-body {
+	position: relative; 
+	z-index: 4;
+	bottom: 25px;
+}
+</style>
+<title>위시리스트</title>
 </head>
 <body> 
-<!-- nav -->
-<nav id="nav">
-	<div id="nav_box">
-		<%@ include file = "../include/nav.jsp" %>
-	</div>
-</nav>
+<div class="container">
+	<nav id="nav">
+		<div id="nav_box">
+			<%@ include file = "../include/nav.jsp" %>
+		</div>
+	</nav>
 
 <!-- Main -->
-<div class="container">
-	<div class="row">
-		<section id ="content">
-			<ul>
-				 <c:forEach items="${wishList}" var="wishList">
-					 <li>
-					  	 <div class="checkBox">
-					  	 	  <input type="hidden" name="userID" class="userID">
-   							  <input type="checkbox" name="chBox" class="chBox" checked="checked"
-   							   data-wlNum="${wishList.contentNum}" onclick="deleteWishList()"/>
-  						  </div>
-						  <div class="contentThumb">
-							   <img src="${pageContext.request.contextPath}${wishList.contentThumbImg}">
-						  </div> 
-						  <div class="contentName">
-							   <a href="${pageContext.request.contextPath}/shop/view?n=${wishList.contentNum}">${wishList.contentSum}</a>
-						  </div>
-					 </li>
-				 </c:forEach>
-			</ul>
-		</section>
+	<div class="content">
+		<c:forEach items="${wishList}" var="wishList">
+			<a href="${pageContext.request.contextPath}/shop/view?n=${wishList.contentNum}">
+				<div class="card">
+				<input type="checkbox" name="chBox" class="chBox" checked="checked"
+				data-wlNum="${wishList.contentNum}" onclick="deleteWishList()"/>
+					<img class="card-img-top"					 							
+						src="${pageContext.request.contextPath}${wishList.contentThumbImg}"
+						alt="Card image cap">
+					<div class="card-body">
+						<p class="content-cateCode">${wishList.cateCode} · ${wishList.cityCode}</p>
+						<h6 class="card-title">[${wishList.cityCode}]&nbsp;${wishList.contentName}</h6>
+						<br/>
+						<p class="contentPrice">
+						<span>가격:&nbsp;</span>
+						<fmt:formatNumber pattern="###,###,###"
+										  value="${wishList.contentPrice}" 
+					    />원 / 1인</p>
+					</div>
+				</div>
+			</a>
+		</c:forEach>
 	</div>
+	<!-- footer -->
+	<footer id="footer">
+		<div id="footer_box">
+			<%@ include file = "../include/footer.jsp" %>
+		</div>
+		
+	</footer>
 </div>
-<!-- footer -->
-<footer id="footer">
-	<div id="footer_box">
-		<%@ include file = "../include/footer.jsp" %>
-	</div>
-	
-</footer>
-
 </body>
 
 <script type="text/javascript">

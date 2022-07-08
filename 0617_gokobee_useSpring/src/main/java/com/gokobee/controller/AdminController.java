@@ -106,8 +106,8 @@ public class AdminController {
 	@RequestMapping(value = "/admin/content/contentUpdate", method = RequestMethod.POST)
 	public String contentUpdate(Locale locale, MultipartFile file, HttpServletRequest request, Model model, ContentVO contentVO) throws IOException, Exception {
 		System.out.println("ContentController의 contentUpdate() 메소드");
-		System.out.println(file);
-		System.out.println(request);
+		//System.out.println(file);
+		//System.out.println(request);
 		
 		
 		//새로운 파일이 등록되었는지 확인

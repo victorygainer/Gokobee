@@ -37,6 +37,7 @@ public interface MybatisDAO {
 	void reservationOK(ReservationVO reservationVO);
 	List<ReservationVO> myContentResList(String contentOwner);
 	List<ReservationVO> myOrderList(String contentOwner);
+	List<ContentVO> contentSearch(String contentName);
 
 	
 	

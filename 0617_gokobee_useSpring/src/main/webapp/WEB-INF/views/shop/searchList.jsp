@@ -79,6 +79,11 @@
 	z-index: 4;
 	bottom: 25px;
 }
+
+#search-content-name {
+	text-align: center;
+}
+
 </style>
 <title>MY TRIP</title>
 
@@ -92,9 +97,10 @@
 				<%@ include file="../include/nav.jsp"%>
 			</div>
 		</nav>
-
+		<h1 class="jumbotron" id="search-content-name">${contentName}</h1>
+		<hr>
 		<div class="content">
-			<c:forEach items="${list}" var="list">
+			<c:forEach items="${searchList}" var="list">
 				<a href="${pageContext.request.contextPath}/shop/view?n=${list.contentNum}">
 					<div class="card">
 					<input type="checkbox" name="chBox" class="chBox">

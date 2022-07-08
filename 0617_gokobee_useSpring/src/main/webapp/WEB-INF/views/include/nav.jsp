@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 	<style type="text/css">
 		html, body {
 		    margin: 0;
@@ -75,12 +76,10 @@
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="container px-4 px-lg-5">
 			<a class="navbar-brand" href="${pageContext.request.contextPath}/shop/list" style="margin-right:30px;">MY TRIP</a>
-			<form action="contentSearch" class="d-flex"
-				style="margin-right: 20px;">
-				<input id="item" name="item" class="form-control me-2" type="text"
-					placeholder="Search" autocomplete="off">
-				<button class="btn btn-dark" name="item-submit" id="item-submit"
-					type="submit">Search</button>
+			<form action="${pageContext.request.contextPath}/contentSearch" class="d-flex" style="margin-right: 20px;">
+				<input id="search-item-text" class="form-control me-2" type="text" style="width:300px"
+					placeholder="도시나 상품을 검색해보세요" name="contentName" autocomplete="off">
+				<button class="btn btn-dark" id="content-search-btn" type="submit">Search</button>
 			</form>
 			<!-- 글쓰기 버튼 -->
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4" style="text-align:center;">
@@ -112,14 +111,12 @@
             	<a class="navbar-brand" href="${pageContext.request.contextPath}/shop/list" style="margin-right:30px;">MY TRIP</a>
                 	<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                			 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-							<form action="contentSearch" class="d-flex"
-									style="margin-right: 20px;">
-									<input id="item" name="item" class="form-control me-2" type="text"
-										placeholder="Search" autocomplete="off">
-									<button class="btn btn-dark" name="item-submit" id="item-submit"
-										type="submit">Search</button>
+							<form action="${pageContext.request.contextPath}/contentSearch" class="d-flex" style="margin-right: 20px;">
+								<input id="search-item-text" class="form-control me-2" type="text" style="width:300px"
+									placeholder="도시나 상품을 검색해보세요" name="contentName" autocomplete="off">
+								<button class="btn btn-dark" id="content-search-btn" type="submit">Search</button>
 							</form>
-                 			   <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4" style="float: right">
+               			   <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4" style="float: right">
                     			<li class="btn btn-light"></li>
                    				 </ul>
                     
@@ -137,4 +134,36 @@
         </nav>
 </c:if>  
 </body>
+<script type="text/javascript">
+/*{
+		var contextPath = "${pageContext.request.contextPath}";
+		const contentSearchBtn = document.querySelector("#content-search-btn");
+		contentSearchBtn.addEventListener('click', () => {
+		//console.log('검색버튼 클릭');
+		let searchItem = document.querySelector('#search-item-text').value;
+		//console.log(searchItem);		
+		let data = {
+				contentName : searchItem,
+		};
+		$.ajax({
+			url : contextPath + "/contentSearch",
+			type : "POST",
+			data : data,
+			success: function(list) {
+				alert('정상작동')
+				let searchResult = list.datalist
+				console.log(${searchResult})
+				},
+			error: function() {
+				alert('에러발생')
+			}
+
+		});	
+		//return location.href= contextPath + "/shop/view/contentSearchOk"
+	});
+}*/
+	
+	
+	
+</script>
 </html>
