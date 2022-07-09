@@ -8,6 +8,26 @@
  	select * from content order by contentNum desc
 </select>
 
+
+<select id="selectHitList" resultType="co">
+<![CDATA[
+SELECT CONTENTNUM , CONTENTTHUMBIMG, CATECODE , CITYCODE , CONTENTNAME , CONTENTPRICE 
+FROM (SELECT CONTENTNUM, CONTENTTHUMBIMG, 
+CATECODE, CITYCODE, CONTENTNAME, CONTENTPRICE 
+FROM CONTENT ORDER BY hit DESC) WHERE ROWNUM <= 4 
+]]>
+</select>
+
+<select id="selectResHitList" resultType="co">
+<![CDATA[
+SELECT CONTENTNUM , CONTENTTHUMBIMG, CATECODE , CITYCODE , CONTENTNAME , CONTENTPRICE 
+FROM (SELECT CONTENTNUM, CONTENTTHUMBIMG, 
+CATECODE, CITYCODE, CONTENTNAME, CONTENTPRICE 
+FROM CONTENT ORDER BY resHit DESC) WHERE ROWNUM <= 4 
+]]>
+</select>
+
+
 <insert id="addWishList">
  insert into wishList (wlNum, userID, contentNum)
      values (wishList_seq.nextval, #{userID}, #{contentNum})
@@ -30,6 +50,10 @@
      wishList
  where contentNum = #{contentNum}
 </delete>
+
+
+
+
 
 </mapper>
 

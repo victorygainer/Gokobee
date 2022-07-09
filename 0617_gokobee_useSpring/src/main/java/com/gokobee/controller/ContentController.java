@@ -98,8 +98,23 @@ public class ContentController {
 		System.out.println("ContentController의 selectList() 메소드");
 		MybatisDAO mapper = sqlSession.getMapper(MybatisDAO.class);
 		List<ContentVO> list = null;
+		List<ContentVO> hitList = null; 
+		List<ContentVO> resHitList = null;
 		list = mapper.selectList();
+		hitList = mapper.selectHitList();
+		resHitList = mapper.selectResHitList();
+		int seoulCount = mapper.selectSeoulCount();
+		int jejuCount = mapper.selectJejuCount();
+		int busanCount = mapper.selectBusanCount();
+		int gyeongjuCount = mapper.selectGyeongjuCount();
+		//System.out.println(seoulCount);
 		model.addAttribute("list", list);
+		model.addAttribute("hitList",hitList);
+		model.addAttribute("resHitList",resHitList);
+		model.addAttribute("seoulCount", seoulCount);
+		model.addAttribute("jejuCount", jejuCount);
+		model.addAttribute("busanCount", busanCount);
+		model.addAttribute("gyeongjuCount", gyeongjuCount);
 		return "/shop/list";
 	}
 	
@@ -107,7 +122,9 @@ public class ContentController {
 	public String getView(Model model, @RequestParam("n") int contentNum) {
 		System.out.println("ContentController의 getView() 메소드");
 		MybatisDAO mapper = sqlSession.getMapper(MybatisDAO.class);
+		//System.out.println(contentNum);
 		ContentVO content = mapper.myContentView(contentNum);
+		mapper.hitIncrement(contentNum);
 		model.addAttribute("content", content);
 		//System.out.println("getview: " + content);
 		return "/shop/view";

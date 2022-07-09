@@ -43,6 +43,7 @@ dateChoose, userID
         on r.contentNum = c.contentNum
   where r.userID = #{userID}
 </select>
+
 </mapper>
 
 

@@ -114,7 +114,10 @@ public class ShopController {
 		System.out.println("ShopController의 reservationOK() 메소드");
 		//System.out.println("reservationVO: " + reservationVO);
 		MybatisDAO mapper = sqlSession.getMapper(MybatisDAO.class);	
+		int contentNum = reservationVO.getContentNum();
+		//System.out.println(contentNum);
 		mapper.reservationOK(reservationVO);
+		mapper.resHitIncrement(contentNum);
 		}
 	}	
 	

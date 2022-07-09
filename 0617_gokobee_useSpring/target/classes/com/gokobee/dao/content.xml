@@ -73,6 +73,32 @@
      content
  where contentNum = #{contentNum}
 </delete>
+
+
+<update id="hitIncrement" parameterType="int">
+update content set hit = hit + 1
+where contentNum = #{contentNum}
+</update>
+
+<update id="resHitIncrement" parameterType="int">
+update content set resHit = resHit + 1
+where contentNum = #{contentNum}
+</update>
+
+<select id="selectSeoulCount" resultType="int">
+SELECT count(*) FROM content WHERE CITYCODE = '서울'
+</select>
+<select id="selectJejuCount" resultType="int">
+SELECT count(*) FROM content WHERE CITYCODE = '제주'
+</select>
+<select id="selectBusanCount" resultType="int">
+SELECT count(*) FROM content WHERE CITYCODE = '부산'
+</select>
+<select id="selectGyeongjuCount" resultType="int">
+SELECT count(*) FROM content WHERE CITYCODE = '경주'
+</select>
+
+
 </mapper>
 
 

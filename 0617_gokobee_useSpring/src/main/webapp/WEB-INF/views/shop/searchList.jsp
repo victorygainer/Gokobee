@@ -16,6 +16,12 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/list.css"/>
 
+<style type="text/css">
+	.jumbotron {
+		text-align: center;
+	}
+
+</style>
 <title>MY TRIP</title>
 </head>
 <body>

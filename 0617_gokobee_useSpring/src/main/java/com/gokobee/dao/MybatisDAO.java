@@ -38,6 +38,14 @@ public interface MybatisDAO {
 	List<ReservationVO> myContentResList(String contentOwner);
 	List<ReservationVO> myOrderList(String contentOwner);
 	List<ContentVO> contentSearch(String contentName);
+	void hitIncrement(int contentNum);
+	List<ContentVO> selectHitList();
+	void resHitIncrement(int contentNum);
+	List<ContentVO> selectResHitList();
+	int selectSeoulCount();
+	int selectJejuCount();
+	int selectBusanCount();
+	int selectGyeongjuCount();
 
 	
 	

@@ -18,6 +18,8 @@ public class ContentVO {
     contentImg       varchar(200)    null,
     contentDate      date            default sysdate,
     contentThumbImg  varchar(200)    null,
+    hit				 number			 default 0
+    resHit			 number			 default 0
     primary key(contentNum)  
 );
 	 */
@@ -34,6 +36,8 @@ public class ContentVO {
 	private String contentImg;
 	private Date contentDate;
     private String contentThumbImg;
+    private int hit;
+    private int resHit;
 
 	
 	public ContentVO() {}
@@ -159,13 +163,33 @@ public class ContentVO {
 	}
 
 
+	public int getHit() {
+		return hit;
+	}
+
+
+	public void setHit(int hit) {
+		this.hit = hit;
+	}
+
+
+	public int getResHit() {
+		return resHit;
+	}
+
+
+	public void setResHit(int resHit) {
+		this.resHit = resHit;
+	}
+
+
 	@Override
 	public String toString() {
 		return "ContentVO [contentNum=" + contentNum + ", cityCode=" + cityCode + ", cateCode=" + cateCode
 				+ ", contentTag=" + contentTag + ", contentName=" + contentName + ", contentOwner=" + contentOwner
 				+ ", contentPrice=" + contentPrice + ", contentSum=" + contentSum + ", contentDes=" + contentDes
 				+ ", contentImg=" + contentImg + ", contentDate=" + contentDate + ", contentThumbImg=" + contentThumbImg
-				+ "]";
+				+ ", hit=" + hit + ", resHit=" + resHit + "]";
 	}
 }
 
