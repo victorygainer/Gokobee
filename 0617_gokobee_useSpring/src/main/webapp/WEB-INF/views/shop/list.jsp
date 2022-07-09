@@ -14,72 +14,8 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<style type="text/css">
-.container {
-	width: 500px;
-}
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/list.css"/>
 
-.content {
-	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	gap: 10px;
-	margin: 10px;
-}
-
-.content a {
-	width: 290px;
-	height: 350px;
-	text-decoration: none;
-	color: black;
-	font-size: 13px;
-	margin: 0px;
-	padding: 0px;
-	z-index: 1;
-}
-
-.content img {
-	height: 200px;
-	display: block;
-	margin: 0px;
-}
-
-.content p {
-	margin: 0px;
-}
-
-.card-body {
-	cell-padding: 0px;
-	margin: 0px;
-}
-
-.chBox {
-	position: relative;
-	z-index: 3;
-	text-align:center;
-	top: 5px;
-	left: 58px;
-	zoom: 2.0;
-
-}
-
-.card{
-	position: relative;
-	width: 290px;
-	height: 350px;
-}
-
-.card-img-top {
-	position: relative; 
-	z-index: 2;
-	top: -27px;
-}
-
-.card-body {
-	position: relative; 
-	z-index: 4;
-	bottom: 25px;
-}
-</style>
 <title>MY TRIP</title>
 
 </head>

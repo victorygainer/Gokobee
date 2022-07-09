@@ -1,0 +1,65 @@
+.container {
+	width: 500px;
+}
+
+.content {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 10px;
+	margin: 10px;
+}
+
+.content a {
+	width: 290px;
+	height: 350px;
+	text-decoration: none;
+	color: black;
+	font-size: 13px;
+	margin: 0px;
+	padding: 0px;
+	z-index: 1;
+}
+
+.content img {
+	height: 200px;
+	display: block;
+	margin: 0px;
+}
+
+.content p {
+	margin: 0px;
+}
+
+@charset "UTF-8";
+.card-body {
+	cell-padding: 0px;
+	margin: 0px;
+}
+
+.chBox {
+	position: relative;
+	z-index: 3;
+	text-align:center;
+	top: 5px;
+	left: 58px;
+	zoom: 2.0;
+
+}
+
+.card{
+	position: relative;
+	width: 290px;
+	height: 350px;
+}
+
+.card-img-top {
+	position: relative; 
+	z-index: 2;
+	top: -27px;
+}
+
+.card-body {
+	position: relative; 
+	z-index: 4;
+	bottom: 25px;
+}
