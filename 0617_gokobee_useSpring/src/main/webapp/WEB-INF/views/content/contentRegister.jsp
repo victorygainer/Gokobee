@@ -19,7 +19,6 @@
 	<style type="text/css">
 	
 		.text {
-		
 		    display: flex;
 		    justify-content: center;
 		    align-items: center;

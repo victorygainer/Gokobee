@@ -23,136 +23,134 @@ String userID = (String) session.getAttribute("userID");
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 
 <style type="text/css">
+
+
 hr {
-	width: 600px
+	width: 800px
 }
 
-.contentInfo {
-	width: 600px;
-	margin: auto;
+aside {
+	width: 312px;
+	position: fixed;
+	background-color:white;
+	text-align: center;
 }
 
-.resInfo {
-   text-align: center;
+.conteiner {
+	width: 1000px;
 }
 
-.text {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100%;
-	font-family: 'Roboto', Arial, sans-serif;
-	font-size: 40px;
-	font-weight: bold;
-	line-height: 1.2;
-	letter-spacing: 0.05em;
-	white-space: nowrap;
-	text-transform: uppercase;
-	color: #fff;
-	background-color: #000;
-	mix-blend-mode: multiply;
-	opacity: 0;
-	animation: fadeInText 3s 2s ease-out forwards;
+.content-container {
+	width: 1000px;
+	display: grid;
+	grid-template-columns: 2fr 1fr;
 }
 
-@
-keyframes scaleImage { 100% {
-	transform: scale(1);
+.content-info {
+	margin: 0px;
 }
 
-}
-@
-keyframes fadeInText { 100% {
-	opacity: 1;
+.res-info hr{
+	width: 280px;
 }
 
-}
-.oriImg {
-	width: 500px, height:auto;
+.content-image img{
+	width: 700px;
 }
 
-.thumbImg {
-	
+.content-desciption img{
+	width: 400px;
+	text-align: center;
+
 }
 </style>
 </head>
 <body>
 
+
+
 	<div class="container">
 		<!-- nav -->
-		<nav id="nav">
+		<nav id="nav" style="width:1180px">
 			<div id="nav_box">
 				<%@ include file="../include/nav.jsp"%>
 			</div>
 		</nav>
 		<!-- main -->
-
-		<div class="contentInfo">
-			<p class="contentName">
-			<h3>[${content.cityCode}]&nbsp;${content.contentName}</h3>
-			</p>
-			<p class="cateName">
-				<span>카테고리:&nbsp;</span>${content.cateCode}</p>
-			<hr>
-			<div class="mb-3">
-				<div class="contentImg">
-					<img src="${pageContext.request.contextPath}${content.contentImg}">
-				</div>
-			</div>
-			<hr>
-			<div class="contentDes">${content.contentDes}</div>
-			<hr>
-			<div class="resInfo">
-				<p class="contentPrice">
-					<span>가격:&nbsp;</span>
-					<fmt:formatNumber pattern="###,###,###"
-						value="${content.contentPrice}" />
-					원 <input type="hidden" id="contentPrice" name="contentPrice"
-						value="${content.contentPrice}" />
+		<div class="content-container">
+			<div class="content-info">
+				<p class="contentName">
+				<h3>[${content.cityCode}]&nbsp;${content.contentName}</h3>
 				</p>
-
-				<div class="contentOwner">
-					<span>소유자정보:&nbsp;</span>${content.contentOwner}</div>
-				<hr />
-				<div class="divaa"
-					style="padding-right: 20px; border-right: 5px dotted #ecf0f1">
-					<label>예약날짜 </label> <input type="text" class="dateChoose"
-						id="dateChoose" style="width: 30%" placeholder="예약 날짜 선택">
-					<br> <br> <label>인원수 </label> <input type="text"
-						class="memberChoose" id="memberChoose" style="width: 30%"
-						placeholder="인원수 선택"> <br>
+				<p class="cateName">
+					<span>카테고리:&nbsp;</span>${content.cateCode}</p>
+				<hr>
+				<div class="mb-3">
+					<div class="content-image" style="text-align: center">
+						<img src="${pageContext.request.contextPath}${content.contentImg}">
+					</div>
 				</div>
-				<hr />
-				<input type="hidden" id="contentOwner" name="contentOwner"
-					value="${content.contentOwner}" />
-				<hr />
-				<p class="addWishList">
-					<button type="button" onclick="addWishList()">위시리스트에 추가</button>
-					<button type="button" onclick="ReservationOK()">예약하기</button>
-				</p>
+				<hr>
+				<div class="content-desciption">${content.contentDes}</div>
+				<hr> 
 			</div>
-			<hr />
+			
+			<div class="res-info">
+				<aside style="display: inline-block">
+					<div class="card">
+						<div class="card-body">
+							<p class="contentPrice">
+								<span>가격:&nbsp;</span>
+								<fmt:formatNumber pattern="###,###,###"
+									value="${content.contentPrice}" />
+								원 / 1인</p> 
+								<hr/>
+							<div class="divaa"
+								style="padding-right: 20px; border-right: 5px dotted #ecf0f1">
+								<label>예약날짜 </label> <input type="text" class="dateChoose"
+									id="dateChoose" style="width: 50%" placeholder="예약 날짜 선택">
+								<br><br>	
+								<label>인원수 </label> <input type="text"
+								class="memberChoose" id="memberChoose" style="width: 50%"
+								placeholder="인원수 선택"> <br>
+							</div>
+									<hr/>
+							<p class="addWishList">
+							<button type="button" onclick="addWishList()">위시리스트에 추가</button>
+							<button type="button" onclick="ReservationOK()">예약하기</button>
+							</p>
+						</div>
+					</div>
+				</aside>
+			</div>
 		</div>
 	</div>
-	<!-- 댓글 입력 양식 -->
-	<div class="container" style="margin-top: 20px;">
-		<table class="table table-striped"
-			style="text-align: center; border: 1px solid #dddddd">
-			<tr>
-				<td><input type="hidden" id="contentNum" name="contentNum"
-					value="${content.contentNum}" /> <input type="text"
-					class="form-control" name="userID" id="userID"
-					value="${userInfo.userID}" readonly="readonly"> <textarea
-						class="form-control" rows="3" name="commentDes" id="commentDes"
-						placeholder="내용을 입력해 주세요"></textarea> <input
-					class="btn btn-sm btn-primary" type="submit" value="댓글입력"
-					onclick="insertComment()" /></td>
-			</tr>
-		</table>
+	
+	
+	<!-- <div class="card mb-2">
+	<div class="card-header bg-light">
+	        <i class="fa fa-comment fa"></i> REPLY
+	</div>
+	<div class="card-body">
+		<ul class="list-group list-group-flush">
+		    <li class="list-group-item">
+			<div class="form-inline mb-2">
+				<label for="replyId"><i class="fa fa-user-circle-o fa-2x"></i></label>
+				<input type="text" class="form-control ml-2" placeholder="Enter yourId" id="replyId">
+				<label for="replyPassword" class="ml-4"><i class="fa fa-unlock-alt fa-2x"></i></label>
+				<input type="password" class="form-control ml-2" placeholder="Enter password" id="replyPassword">
+			</div>
+			<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+			<button type="button" class="btn btn-dark mt-3" onClick="javascript:addReply();">post reply</button>
+		    </li>
+		</ul>
+	</div>
+</div> -->
+
 
 
 		<!-- 댓글 출력 양식 -->
-		<div class="container">
+		<div class="reply-container">
 			<div class="row">
 				<table class="table table-striped"
 					style="text-align: center; border: 1px solid #dddddd">
@@ -169,6 +167,22 @@ keyframes fadeInText { 100% {
 					</tbody>
 				</table>
 			</div>
+			
+				<!-- 댓글 입력 양식 -->
+		<div class="reply-container card mb-2" style="margin-top: 20px;">
+			<table class="table table-striped"
+				style="text-align: center; border: 1px solid #dddddd">
+				<tr>
+					<td><input type="hidden" id="contentNum" name="contentNum"
+						value="${content.contentNum}" /> <input type="text"
+						class="form-control" name="userID" id="userID"
+						value="${userInfo.userID}" readonly="readonly"> <textarea
+							class="form-control" rows="3" name="commentDes" id="commentDes"
+							placeholder="내용을 입력해 주세요"></textarea> <input
+						class="btn btn-sm btn-primary" type="submit" value="댓글입력"
+						onclick="insertComment()" /></td>
+				</tr>
+			</table>
 		</div>
 		<!-- footer -->
 		<footer id="footer">
@@ -177,6 +191,7 @@ keyframes fadeInText { 100% {
 			</div>
 		</footer>
 	</div>
+
 </body>
 
 
