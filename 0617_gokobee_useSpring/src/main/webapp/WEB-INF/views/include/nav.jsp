@@ -37,8 +37,7 @@
 			position: relative;
 			bottom: 0;
 		}
-		.text {
-		
+		.text {	
 		    display: flex;
 		    justify-content: center;
 		    align-items: center;

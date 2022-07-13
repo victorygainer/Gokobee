@@ -33,6 +33,21 @@
  footer#footer ul li { display:inline-block; margin-right:10px; }
  
  #container_box table td { width:150px; }
+ 
+ #content-table {
+ 	margin: 10px 10px 10px 10px
+ }
+ 
+ #content-table img{
+ 	width: 150px;
+ 	height: 150px;
+ }
+  #content-table td{
+ 	text-align: center;
+ }
+   #content-table th{
+ 	text-align: center;
+ }
 </style>
 </head>
 <body>
@@ -55,7 +70,7 @@
 	      <h2>여행상품수정</h2>
 	      <hr>
 	      <div class="table-responsive">          
-			  <table>
+			  <table id="content-table">
 					 <thead>
 						  <tr>
 						   <th>콘텐츠 번호</th>

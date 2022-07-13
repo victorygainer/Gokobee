@@ -46,6 +46,8 @@ public interface MybatisDAO {
 	int selectJejuCount();
 	int selectBusanCount();
 	int selectGyeongjuCount();
+	void rsvConfirm(int reservationNum);
+	void rsvCancel(int reservationNum);
 
 	
 	

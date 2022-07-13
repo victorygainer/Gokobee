@@ -185,7 +185,7 @@ public class AdminController {
 			String contentOwner = request.getParameter("userID");
 			//System.out.println(contentOwner);			
 			List<ReservationVO> myContentResList = mapper.myContentResList(contentOwner);
-			//System.out.println(myContentResList);
+			System.out.println("myContentResList:" + myContentResList);
 			model.addAttribute("myContentResList",myContentResList);
 		return "/admin/reservation/myContentResList";
 	}
@@ -197,10 +197,32 @@ public class AdminController {
 			String contentOwner = request.getParameter("userID");
 			System.out.println(contentOwner);			
 			List<ReservationVO> myOrderList = mapper.myOrderList(contentOwner);
-			System.out.println(myOrderList);
+			System.out.println("myOrderList: " + myOrderList);
 			model.addAttribute("myOrderList",myOrderList);
 		return "/admin/reservation/myOrderList";
 	}
+		@ResponseBody
+		@RequestMapping(value = "/admin/myContentResList/rsvConfirm", method = {RequestMethod.GET, RequestMethod.POST})
+		public void rsvConfirm(ReservationVO reservationVO) {
+			System.out.println("HomeController 클래스의 rsvConfirm() 메소드");
+			System.out.println(reservationVO);
+			int reservationNum = reservationVO.getReservationNum();
+			System.out.println(reservationNum);
+			MybatisDAO mapper = sqlSession.getMapper(MybatisDAO.class);
+			mapper.rsvConfirm(reservationNum);
+	}
+		
+		@ResponseBody
+		@RequestMapping(value = "/admin/myContentResList/rsvCancel", method = {RequestMethod.GET, RequestMethod.POST})
+		public void rsvCancel(ReservationVO reservationVO) {
+			System.out.println("HomeController 클래스의 rsvCancel() 메소드");
+			System.out.println(reservationVO);
+			int reservationNum = reservationVO.getReservationNum();
+			System.out.println(reservationNum);
+			MybatisDAO mapper = sqlSession.getMapper(MybatisDAO.class);
+			mapper.rsvCancel(reservationNum);
+	}
+		
 }
 
 

@@ -16,8 +16,7 @@
 		    margin: 0;
 		    padding: 0;
 		    height: 100%;
-		}
-		
+		}	
 		nav{
 			margin-bottom: 10px;
 		}
@@ -40,8 +39,7 @@
 			position: relative;
 			bottom: 0;
 		}
-		.text {
-		
+		.text {		
 		    display: flex;
 		    justify-content: center;
 		    align-items: center;
@@ -57,8 +55,7 @@
 		    background-color: #000;
 		    mix-blend-mode: multiply;
 		    opacity: 0;
-		    animation: fadeInText 3s 2s ease-out forwards;
-		
+		    animation: fadeInText 3s 2s ease-out forwards;		
 		}
 		@keyframes scaleImage {
 		    100% {

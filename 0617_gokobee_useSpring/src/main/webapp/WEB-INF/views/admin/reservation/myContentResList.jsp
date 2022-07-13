@@ -10,8 +10,11 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"
+		integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+		crossorigin="anonymous"></script>
 <style>
- body { font-family:'맑은 고딕', verdana; padding:0; margin:0; }
+body { font-family:'맑은 고딕', verdana; padding:0; margin:0; }
  ul { padding:0; margin:0; list-style:none;  }
 
  div#root { width:90%; margin:0 auto; }
@@ -33,6 +36,21 @@
  footer#footer ul li { display:inline-block; margin-right:10px; }
  
  #container_box table td { width:150px; }
+ 
+ #content-table {
+ 	margin: 10px 10px 10px 10px
+ }
+ 
+ #content-table img{
+ 	width: 150px;
+ 	height: 150px;
+ }
+  #content-table td{
+ 	text-align: center;
+ }
+   #content-table th{
+ 	text-align: center;
+ }
 </style>
 </head>
 <body>
@@ -55,13 +73,12 @@
 	      <h2>여행상품 주문 현황</h2>
 	      <hr>
 	      <div class="table-responsive">          
-			  <table>
+			  <table id="content-table">
 					 <thead>
 						  <tr>
 						   <th>예약 번호</th>
 						   <th>썸네일</th>
 						   <th>이름</th>
-						   <th>카테고리</th>
 						   <th>희망일정</th>
 						   <th>신청인원</th>
 						   <th>가격</th>
@@ -83,9 +100,6 @@
 								   		<a href="${pageContext.request.contextPath}/shop/view?n=${myContentResList.contentNum}">${myContentResList.contentName}</a>
 								   </td>
 								   <td>
-								  		 ${myContentResList.cateCode}
-								   </td>
-								   <td>
 								   		${myContentResList.dateChoose}
 								   </td>
 								   <td>
@@ -101,6 +115,19 @@
 								   ${myContentResList.userID}
 								   </td>
 								   <td>
+							   			<c:choose>
+											<c:when test="${myContentResList.rsvStatus eq '0'}"> 									   
+											<button class="rsvConfimBtn">예약확정</button>
+											<button class="rsvCancelBtn">예약취소</button>											
+											</c:when>
+											<c:when test="${myContentResList.rsvStatus eq '1'}">    
+											확정</c:when>
+											<c:when test="${myContentResList.rsvStatus eq '-1'}">    
+											취소</c:when>
+											<c:otherwise>        
+											오류   
+											</c:otherwise>
+										</c:choose>
 								   </td>
 							  </tr>   
 						  </c:forEach>
@@ -116,4 +143,59 @@
 	</div>
 </footer>
 </body>
+<script type="text/javascript">
+{
+	$(".rsvConfimBtn").click(function(){
+		var str = "";
+		var tdArr = new Array();
+		var rsvConfimBtn = $(this);
+		var tr = rsvConfimBtn.parent().parent();
+		var td = tr.children();	
+		//console.log("클릭한 Row의 모든 데이터 : "+tr.text())
+		var reservationNum = td.eq(0).text();
+		console.log(reservationNum);
+		
+		$.ajax({
+			url:"${pageContext.request.contextPath}/admin/myContentResList/rsvConfirm",
+			type: "post",
+			data: { reservationNum : reservationNum },
+			success: function(){	
+				alert('예약이 확정되었습니다.')
+				location.href = 'http://localhost:9090/useSpring/admin/myContentResList?userID=${userInfo.userID}'
+			},
+			error: function(){
+				alert('오류발생!')
+			}
+		});		
+	});
+}
+{
+	$(".rsvCancelBtn").click(function(){
+		var str = "";
+		var tdArr = new Array();
+		var rsvConfimBtn = $(this);
+		var tr = rsvConfimBtn.parent().parent();
+		var td = tr.children();	
+		//console.log("클릭한 Row의 모든 데이터 : "+tr.text())
+		var reservationNum = td.eq(0).text();
+		console.log(reservationNum);
+		
+		$.ajax({
+			url:"${pageContext.request.contextPath}/admin/myContentResList/rsvCancel",
+			type: "post",
+			data: { reservationNum : reservationNum },
+			success: function(){	
+				alert('예약이 취소되었습니다.')
+				location.href = 'http://localhost:9090/useSpring/admin/myContentResList?userID=${userInfo.userID}'
+			},
+			error: function(){
+				alert('오류발생!')
+			}
+		});		
+	});
+	
+	
+	}
+
+</script>
 </html>

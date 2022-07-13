@@ -3,10 +3,11 @@ function ReservationOK() {
 	let contentNum = document.getElementById('contentNum').value;
 	let userID = document.getElementById('userID').value;
 	let contentOwner = document.getElementById('contentOwner').value;
-	let dateChoose = document.getElementById('dateChoose').value;
+	let dateChoose =  document.getElementById('dateChoose').value;
 	let memberChoose = document.getElementById('memberChoose').value;
-	let contentPrice = document.getElementById('contentPrice').value
+	let contentPrice = document.getElementById('contentPrice').value;
 	let totalPrice = memberChoose * contentPrice;
+	//console.log(dateChoose);
 	console.log('contentNum: ' + contentNum + ', userID: ' + userID + ',contentOwner: ' 
 			+ contentOwner + ', dateChoose: ' + dateChoose + ', memberChoose: ' + memberChoose);
 	//console.log(totalPrice);
@@ -26,7 +27,7 @@ function ReservationOK() {
 			alert("예약이 완료 되었습니다.");
 		},
 		error : function() {
-			alert("에러발생!");
+			location.href= contextPath + "/login"		
 		}		
 	});
 }

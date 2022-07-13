@@ -1,49 +1,47 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%
-String userID = (String) session.getAttribute("userID");
-%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <title>콘텐츠 조회</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 <link rel="icon" href="/favicon.ico" type="image/x-icon">
-<meta charset="UTF-8">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.2.0/dist/css/datepicker.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.2.0/dist/js/datepicker-full.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.2.0/dist/js/locales/ko.js"></script>
+
 
 <style type="text/css">
-
 
 hr {
 	width: 800px
 }
 
 aside {
-	width: 312px;
+	width: 300px;
 	position: fixed;
 	background-color:white;
 	text-align: center;
 }
 
-.conteiner {
-	width: 1000px;
+.container {
+	width: 1200px;
 }
 
 .content-container {
-	width: 1000px;
+	width: 1200px;
 	display: grid;
 	grid-template-columns: 2fr 1fr;
+	margin: auto;
 }
 
 .content-info {
@@ -51,7 +49,7 @@ aside {
 }
 
 .res-info hr{
-	width: 280px;
+	width: 270px;
 }
 
 .content-image img{
@@ -63,11 +61,16 @@ aside {
 	text-align: center;
 
 }
+
+.form-floating > .bi-calendar-date + .datepicker_input + label {
+  padding-left: 3.5rem;
+}
+
 </style>
 </head>
 <body>
 
-
+	
 
 	<div class="container">
 		<!-- nav -->
@@ -107,17 +110,29 @@ aside {
 								<hr/>
 							<div class="divaa"
 								style="padding-right: 20px; border-right: 5px dotted #ecf0f1">
-								<label>예약날짜 </label> <input type="text" class="dateChoose"
-									id="dateChoose" style="width: 50%" placeholder="예약 날짜 선택">
-								<br><br>	
-								<label>인원수 </label> <input type="text"
-								class="memberChoose" id="memberChoose" style="width: 50%"
-								placeholder="인원수 선택"> <br>
+								<div class="input-group mb-4">
+								<input type="text"
+										class="datepicker_input form-control"
+										id = "dateChoose" 
+									    placeholder="날짜를 선택해 주세요" 
+									    required aria-label="여행일을 선택해주세요"
+									    style="background-color: lightgray;
+									    	   text-align: center;">
+								</div>
+								<!--   <input type="button" onclick="count('minus')" value="-"></button>
+								<div class="number-count" id="countElement" style="width: 50%; display: inline;">
+								</div>
+								<input type="button" onclick="count('plus')" value=" +"></button> -->
+								<input type="number" id="memberChoose" style="text-align: center;" value="0">
+								<br>
 							</div>
 									<hr/>
 							<p class="addWishList">
 							<button type="button" onclick="addWishList()">위시리스트에 추가</button>
 							<button type="button" onclick="ReservationOK()">예약하기</button>
+							<input type="hidden" id="userID" value="${userInfo.userID}">
+							<input type="hidden" id="contentOwner" value="${content.contentOwner}">
+							<input type="hidden" id="contentPrice" value="${content.contentPrice}">
 							</p>
 						</div>
 					</div>
@@ -126,6 +141,7 @@ aside {
 		</div>
 	</div>
 	
+
 	
 	<!-- <div class="card mb-2">
 	<div class="card-header bg-light">
@@ -201,13 +217,47 @@ aside {
 		alert('로그인을 하신 후 이용해 주시기 바랍니다.')
 		location.href = "/login"
 	}
+	
+	{
+		const getDatePickerTitle = elem => {
+			  // From the label or the aria-label
+			  const label = elem.nextElementSibling;
+			  let titleText = '';
+			  if (label && label.tagName === 'LABEL') {
+			    titleText = label.textContent;
+			  } else {
+			    titleText = elem.getAttribute('aria-label') || '';
+			  }
+			  return titleText;
+			}
+
+			const elems = document.querySelectorAll('.datepicker_input');
+			for (const elem of elems) {
+			  const datepicker = new Datepicker(elem, {
+			    'format': 'yyyy.mm.dd',
+			    'language' : 'ko',
+			    title: getDatePickerTitle(elem)
+			  });
+			}
+	}
+	
+	{
+		function count(type) {
+			const insertResult = document.getElementById('memberChoose');
+			let number = insertResult.innerText;
+			if(type === 'plus'){
+				number = parseInt(number) + 1;
+			} else if(type === 'minus'){
+				number = parseInt(number) - 1;
+			}
+			insertResult.innerText = number;
+		}
+	}
+	
 </script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/js/comment.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/js/wishList.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/js/reservation.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/comment.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/wishList.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/reservation.js"></script>	
 
 
 

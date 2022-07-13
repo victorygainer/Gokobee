@@ -22,27 +22,39 @@ dateChoose, userID
 <select id="myContentResList" parameterType="String" resultType="ro">
  select 
     r.reservationNum, r.reservationDate, r.userID,
-    r.dateChoose, r.memberChoose, r.totalPrice,
+    r.dateChoose, r.memberChoose, r.totalPrice, r.rsvStatus,
     c.contentName, c.contentThumbImg, c.contentSum,
     c.contentNum, c.cateCode, c.contentOwner
   from reservation r
     inner join content c
-        on r.contentNum = c.contentNum
+        on r.contentNum = c.contentNum        
   where r.contentOwner = #{contentOwner}
-        and c.contentOwner = #{contentOwner}
+        and c.contentOwner = #{contentOwner} 
+  order by reservationNum desc       
 </select>
 
 <select id="myOrderList" parameterType="String" resultType="ro">
  select 
     r.reservationNum, r.reservationDate, r.userID,
-    r.dateChoose, r.memberChoose, r.totalPrice,
+    r.dateChoose, r.memberChoose, r.totalPrice, r.rsvStatus,
     c.contentName, c.contentThumbImg, c.contentSum,
     c.contentNum, c.cateCode, c.contentOwner
   from reservation r
     inner join content c
         on r.contentNum = c.contentNum
-  where r.userID = #{userID}
+  where r.userID = #{userID} 
+  order by reservationNum desc  
 </select>
+
+<update id="rsvConfirm" parameterType="int">
+update reservation set rsvStatus = 1
+where reservationNum = #{reservationNum}
+</update>
+
+<update id="rsvCancel" parameterType="int">
+update reservation set rsvStatus = -1
+where reservationNum = #{reservationNum}
+</update>
 
 </mapper>
 

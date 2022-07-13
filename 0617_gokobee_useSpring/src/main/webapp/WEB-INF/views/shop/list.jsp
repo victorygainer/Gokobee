@@ -7,6 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="icon" href="./img/logo.png" />
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
@@ -49,6 +50,7 @@
 		left: 20px;
 		z-index: 2;
 	}
+	
 </style>
 <title>MY TRIP</title>
 </head>
@@ -114,7 +116,7 @@
 			<c:forEach items="${hitList}" var="hitList">
 				<a href="${pageContext.request.contextPath}/shop/view?n=${hitList.contentNum}">
 					<div class="card">
-					<input type="checkbox" name="chBox" class="chBox">
+					<input type="checkbox" name="chBox" class="chBox" data-wlNum="${hitList.contentNum}">
 						<img class="card-img-top"					 							
 							src="${pageContext.request.contextPath}${hitList.contentThumbImg}"
 							alt="Card image cap">
@@ -137,7 +139,7 @@
 			<c:forEach items="${resHitList}" var="resHitList">
 				<a href="${pageContext.request.contextPath}/shop/view?n=${resHitList.contentNum}">
 					<div class="card">
-					<input type="checkbox" name="chBox" class="chBox">
+					<input type="checkbox" name="chBox" class="chBox" data-wlNum="${resHitList.contentNum}">
 						<img class="card-img-top"					 							
 							src="${pageContext.request.contextPath}${resHitList.contentThumbImg}"
 							alt="Card image cap">
@@ -161,7 +163,8 @@
 			<c:forEach items="${list}" var="list">
 				<a href="${pageContext.request.contextPath}/shop/view?n=${list.contentNum}">
 					<div class="card">
-					<input type="checkbox" name="chBox" class="chBox">
+					<input type="checkbox" name="chBox"  onclick="addWishList()"
+					class="chBox" data-wlNum="${list.contentNum}">
 						<img class="card-img-top"					 							
 							src="${pageContext.request.contextPath}${list.contentThumbImg}"
 							alt="Card image cap">
@@ -190,6 +193,33 @@
 	</footer>
 
 </body>
+
+<script type="text/javascript">
+var contextPath = "${pageContext.request.contextPath}";
+
+{
+	function addWishList(){
+		var checkArr = new Array();
+		if (userID != null) {
+		var userID = "${userInfo.userID}"
+		console.log(userID);
+		$('input:checkbox[class="chBox"]').is(":checked").each(function(){
+			checkArr.push($(this).attr("data-wlNum"))
+		});
+		console.log(checkArr);
+		} else { 
+			function goLogin() {
+				location.href= contextPath + "/login"
+			}
+		}
+
+		
+	};
+}
+
+	
+</script>
+
 </html>
 
 

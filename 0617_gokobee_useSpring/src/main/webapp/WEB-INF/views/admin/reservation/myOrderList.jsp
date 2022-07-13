@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <style>
- body { font-family:'맑은 고딕', verdana; padding:0; margin:0; }
+body { font-family:'맑은 고딕', verdana; padding:0; margin:0; }
  ul { padding:0; margin:0; list-style:none;  }
 
  div#root { width:90%; margin:0 auto; }
@@ -33,6 +33,21 @@
  footer#footer ul li { display:inline-block; margin-right:10px; }
  
  #container_box table td { width:150px; }
+ 
+ #content-table {
+ 	margin: 10px 10px 10px 10px
+ }
+ 
+ #content-table img{
+ 	width: 150px;
+ 	height: 150px;
+ }
+  #content-table td{
+ 	text-align: center;
+ }
+   #content-table th{
+ 	text-align: center;
+ }
 </style>
 </head>
 <body>
@@ -55,7 +70,7 @@
 	      <h2>내 주문</h2>
 	      <hr>
 	      <div class="table-responsive">          
-			  <table>
+			  <table id="content-table">
 					 <thead>
 						  <tr>
   							   <th>예약 번호</th>
@@ -99,6 +114,17 @@
 								   	<fmt:formatDate value="${myOrderList.reservationDate}" pattern="yyyy-MM-dd"/>
 								   </td>
 								   <td>
+								   		<c:choose>
+											<c:when test="${myOrderList.rsvStatus eq '0'}">    
+											확인중</c:when>
+											<c:when test="${myOrderList.rsvStatus eq '1'}">    
+											확정</c:when>
+											<c:when test="${myOrderList.rsvStatus eq '-1'}">    
+											취소</c:when>
+											<c:otherwise>        
+											오류   
+											</c:otherwise>
+										</c:choose>
 								   </td>
 							  </tr>   
 						  </c:forEach>

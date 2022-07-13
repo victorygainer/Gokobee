@@ -20,11 +20,12 @@ public class ReservationVO {
 	private int memberChoose;
 	private int totalPrice;
 	private Date reservationDate;
-	
 	private String contentName;
 	private String contentThumbImg;
 	private String contentSum;
 	private String cateCode;
+	private int rsvStatus;
+	
 	public int getReservationNum() {
 		return reservationNum;
 	}
@@ -97,6 +98,12 @@ public class ReservationVO {
 	public void setCateCode(String cateCode) {
 		this.cateCode = cateCode;
 	}
+	public int getRsvStatus() {
+		return rsvStatus;
+	}
+	public void setRsvStatus(int rsvStatus) {
+		this.rsvStatus = rsvStatus;
+	}
 	
 	@Override
 	public String toString() {
@@ -104,6 +111,10 @@ public class ReservationVO {
 				+ ", contentOwner=" + contentOwner + ", dateChoose=" + dateChoose + ", memberChoose=" + memberChoose
 				+ ", totalPrice=" + totalPrice + ", reservationDate=" + reservationDate + ", contentName=" + contentName
 				+ ", contentThumbImg=" + contentThumbImg + ", contentSum=" + contentSum + ", cateCode=" + cateCode
-				+ "]";
+				+ ", rsvStatus=" + rsvStatus + "]";
 	}
+	
+	
+	
+	
 }
