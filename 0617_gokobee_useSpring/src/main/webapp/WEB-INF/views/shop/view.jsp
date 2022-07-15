@@ -58,8 +58,16 @@ aside {
 
 .content-desciption img{
 	width: 400px;
-	text-align: center;
+	height: 400px;
+	background-position: center center;
+	background-repeat: no-repeat;
+	border: 2px solid skyblue;
 
+}
+
+.image{
+	display: inline-block;
+	text-align: center;
 }
 
 .form-floating > .bi-calendar-date + .datepicker_input + label {
@@ -139,6 +147,49 @@ aside {
 				</aside>
 			</div>
 		</div>
+									<!-- 댓글 출력 양식 -->
+		<div class="reply-container">
+			<div class="row">
+				<table class="table table-striped"
+					style="text-align: center; border: 1px solid #dddddd; width:1200px">
+					<thead>
+						<tr>
+							<th style="background-color: #eeeeee; text-align: center;">아이디</th>
+							<th style="background-color: #eeeeee; text-align: center;">댓글
+								내용</th>
+							<th style="background-color: #eeeeee; text-align: center;">작성일</th>
+						</tr>
+					</thead>
+					<tbody id="commentTable">
+						<tr></tr>
+					</tbody>
+				</table>
+			</div>
+			
+				<!-- 댓글 입력 양식 -->
+		<div class="reply-container card mb-2" style="margin-top: 20px; width:1200px">
+			<table class="table table-striped"
+				style="text-align: center; border: 1px solid #dddddd">
+				<tr>
+					<td><input type="hidden" id="contentNum" name="contentNum"
+						value="${content.contentNum}" /> <input type="text"
+						class="form-control" name="userID" id="userID"
+						value="${userInfo.userID}" readonly="readonly"> <textarea
+							class="form-control" rows="3" name="commentDes" id="commentDes"
+							style="resize: none"
+							placeholder="내용을 입력해 주세요"></textarea> <input
+						class="btn btn-sm btn-primary" type="submit" value="댓글입력"
+						onclick="insertComment()" /></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+			<!-- footer -->
+		<footer id="footer" style="width: 1000px;">
+			<div id="footer_box">
+				<%@ include file="../include/footer.jsp"%>
+			</div>
+		</footer>
 	</div>
 	
 
@@ -165,48 +216,7 @@ aside {
 
 
 
-		<!-- 댓글 출력 양식 -->
-		<div class="reply-container">
-			<div class="row">
-				<table class="table table-striped"
-					style="text-align: center; border: 1px solid #dddddd">
-					<thead>
-						<tr>
-							<th style="background-color: #eeeeee; text-align: center;">아이디</th>
-							<th style="background-color: #eeeeee; text-align: center;">댓글
-								내용</th>
-							<th style="background-color: #eeeeee; text-align: center;">작성일</th>
-						</tr>
-					</thead>
-					<tbody id="commentTable">
-						<tr></tr>
-					</tbody>
-				</table>
-			</div>
-			
-				<!-- 댓글 입력 양식 -->
-		<div class="reply-container card mb-2" style="margin-top: 20px;">
-			<table class="table table-striped"
-				style="text-align: center; border: 1px solid #dddddd">
-				<tr>
-					<td><input type="hidden" id="contentNum" name="contentNum"
-						value="${content.contentNum}" /> <input type="text"
-						class="form-control" name="userID" id="userID"
-						value="${userInfo.userID}" readonly="readonly"> <textarea
-							class="form-control" rows="3" name="commentDes" id="commentDes"
-							placeholder="내용을 입력해 주세요"></textarea> <input
-						class="btn btn-sm btn-primary" type="submit" value="댓글입력"
-						onclick="insertComment()" /></td>
-				</tr>
-			</table>
-		</div>
-		<!-- footer -->
-		<footer id="footer">
-			<div id="footer_box">
-				<%@ include file="../include/footer.jsp"%>
-			</div>
-		</footer>
-	</div>
+
 
 </body>
 

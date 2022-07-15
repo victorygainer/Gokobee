@@ -3,13 +3,12 @@
 <mapper namespace="com.gokobee.dao.MybatisDAO">
 
 <select id="contentSearch" parameterType="String" resultType="co">
-select * from content where contentDes like '%'||#{contentName}||'%'
-<!-- (cityCode  like '%'||#{contentName}||'%')
+select * from content where (contentDes like '%'||#{contentName}||'%')
+OR (cityCode  like '%'||#{contentName}||'%')
 OR (cateCode  like '%'||#{contentName}||'%') 
 OR (contentTag like '%'||#{contentName}||'%')
-OR 
 OR (contentSum  like '%'||#{contentName}||'%')
-OR (contentDes  like '%'||#{contentName}||'%') -->
+OR (contentDes  like '%'||#{contentName}||'%')
 </select>
 
 </mapper>

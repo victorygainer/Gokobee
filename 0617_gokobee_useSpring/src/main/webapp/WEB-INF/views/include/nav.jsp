@@ -67,7 +67,7 @@
 		    }
 		}
     </style>
-<title>Insert title here</title>
+<title>국내여행은 Gokobee</title>
 </head>
 <body>
 <!-- Navigation-->

@@ -68,7 +68,7 @@
 		    }
 		}
     </style>
-<title>Insert title here</title>
+<title>국내여행은 Gokobee</title>
 </head>
 <body>
 <!-- Navigation-->
@@ -76,13 +76,11 @@
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<div class="container px-4 px-lg-5">
 				<a class="navbar-brand" href="${pageContext.request.contextPath}/shop/list" style="margin-right:30px;">MY TRIP</a>
-				<form action="contentSearch.nhn" class="d-flex"
-					style="margin-right: 20px;">
-					<input id="item" name="item" class="form-control me-2" type="text"
-						placeholder="Search" autocomplete="off">
-					<button class="btn btn-dark" name="item-submit" id="item-submit"
-						type="submit">Search</button>
-				</form>
+				<form action="${pageContext.request.contextPath}/contentSearch" class="d-flex" style="margin-right: 20px;">
+				<input id="search-item-text" class="form-control me-2" type="text" style="width:300px"
+					placeholder="도시나 상품을 검색해보세요" name="contentName" autocomplete="off">
+				<button class="btn btn-dark" id="content-search-btn" type="submit">Search</button>
+			</form>
 				<!-- 글쓰기 버튼 -->
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4" style="text-align:center;">
 					<li class="btn btn-light"><a class="nav-link"
@@ -96,7 +94,7 @@
 					<li class="btn btn-light">
 						<a class="nav-link" href="${pageContext.request.contextPath}/admin/myContentResList?userID=${userInfo.userID}">여행상품 주문 현황</a></li>
 				</ul>
-				<form action="logout.nhn">
+				<form action="/logout">
 					<button class="btn btn-outline-dark" type="submit"
 						style="margin: 10px">
 						<a href="${pageContext.request.contextPath}/logout" style="text-decoration: none; color: black;">로그아웃</a>
